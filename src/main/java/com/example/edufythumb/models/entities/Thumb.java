@@ -18,10 +18,13 @@ public class Thumb {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "media_name", nullable = false, length = 100)
+    private String mediaName;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "media_type", nullable = false, length = 50)
     private MediaType mediaType;
-
+// ED-176-AWS
     @Column(name = "media_id", nullable = false)
     private Long mediaId;
 
@@ -34,23 +37,32 @@ public class Thumb {
     public Thumb() {
     }
 
-    public Thumb(MediaType mediaType, Long mediaId) {
+    public Thumb(String mediaName, MediaType mediaType, Long mediaId) {
+        this.mediaName = mediaName;
         this.mediaType = mediaType;
         this.mediaId = mediaId;
     }
 
-    public Thumb(MediaType mediaType, Long mediaId, Long thumbsUp, Long thumbsDown) {
+    public Thumb(String mediaName, MediaType mediaType, Long mediaId, Long thumbsUp, Long thumbsDown) {
+        this.mediaName = mediaName;
         this.mediaType = mediaType;
         this.mediaId = mediaId;
         this.thumbsUp = thumbsUp;
         this.thumbsDown = thumbsDown;
     }
 
+
     public Long getId() {
         return id;
     }
     public void setId(Long id) {
         this.id = id;
+    }
+    public String getMediaName() {
+        return mediaName;
+    }
+    public void setMediaName(String mediaName) {
+        this.mediaName = mediaName;
     }
     public MediaType getMediaType() {
         return mediaType;
@@ -91,6 +103,7 @@ public class Thumb {
     public String toString() {
         return "Thumb{" +
                 "id=" + id +
+                ", mediaName='" + mediaName + '\'' +
                 ", mediaType=" + mediaType +
                 ", mediaId=" + mediaId +
                 ", thumbsUp=" + thumbsUp +
