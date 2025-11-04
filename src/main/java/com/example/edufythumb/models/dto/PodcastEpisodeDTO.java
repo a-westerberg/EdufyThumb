@@ -1,16 +1,16 @@
-package com.example.edufythumb.dto;
+package com.example.edufythumb.models.dto;
 
 
-// ED-130-AWS
-public class VideoClipDTO {
+// ED-129-AWS
+public class PodcastEpisodeDTO {
 
     private Long id;
     private String title;
 
-    public VideoClipDTO() {
+    public PodcastEpisodeDTO() {
     }
 
-    public VideoClipDTO(Long id, String title) {
+    public PodcastEpisodeDTO(Long id, String title) {
         this.id = id;
         this.title = title;
     }
@@ -30,7 +30,7 @@ public class VideoClipDTO {
 
     @Override
     public String toString() {
-        return "VideoClipDTO{" +
+        return "PodcastEpisodeDTO{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 '}';
