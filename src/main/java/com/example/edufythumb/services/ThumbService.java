@@ -10,5 +10,7 @@ import java.util.List;
 public interface ThumbService {
     ThumbDTO getThumbByMediaAndId(String media, Long id);//ED-217-SA
 
-    List<ThumbDTO> getThumbsUpFilteredListByMediaType(MediaType mediaType);
+    List<ThumbDTO> getThumbsUpFilteredListByMediaType(MediaType mediaType); //ED-98-AA
+
+    List<ThumbDTO> getThumbsDownFilteredListByMediaType(MediaType mediaType); //ED-99-AA
 }

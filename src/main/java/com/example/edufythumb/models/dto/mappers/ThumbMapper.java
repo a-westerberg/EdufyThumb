@@ -27,4 +27,22 @@ public class ThumbMapper {
         thumbDTO.setThumbsDown(thumb.getThumbsDown());
         return thumbDTO;
     }
+
+    //ED-99-AA
+    public static ThumbDTO toDTOThumbsUp(Thumb thumb) {
+        ThumbDTO thumbDTO = new ThumbDTO();
+        thumbDTO.setMediaName(thumb.getMediaName());
+        thumbDTO.setMediaType(thumb.getMediaType());
+        thumbDTO.setThumbsUp(thumb.getThumbsUp());
+        return thumbDTO;
+    }
+
+    //ED-99-AA
+    public static ThumbDTO toDTOThumbsDown(Thumb thumb) {
+        ThumbDTO thumbDTO = new ThumbDTO();
+        thumbDTO.setMediaName(thumb.getMediaName());
+        thumbDTO.setMediaType(thumb.getMediaType());
+        thumbDTO.setThumbsDown(thumb.getThumbsDown());
+        return thumbDTO;
+    }
 }

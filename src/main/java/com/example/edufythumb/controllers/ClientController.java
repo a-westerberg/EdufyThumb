@@ -33,4 +33,10 @@ public class ClientController {
     public ResponseEntity<List<ThumbDTO>> getThumbsOnMedia(@PathVariable MediaType mediaType){
         return ResponseEntity.ok(thumbService.getThumbsUpFilteredListByMediaType(mediaType));
     }
+
+    //ED-99-AA
+    @GetMapping("/thumbsdown-media/{mediaType}")
+    public ResponseEntity<List<ThumbDTO>> getThumbsDownMedia(@PathVariable MediaType mediaType){
+        return ResponseEntity.ok(thumbService.getThumbsDownFilteredListByMediaType(mediaType));
+    }
 }

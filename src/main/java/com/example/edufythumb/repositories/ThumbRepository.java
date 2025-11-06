@@ -13,4 +13,6 @@ public interface ThumbRepository extends JpaRepository<Thumb, Long> {
     Thumb findByMediaTypeAndMediaId(MediaType mediaType, Long mediaId);//ED-217-SA
 
     List<Thumb> findByMediaTypeOrderByThumbsUpDesc(MediaType mediaType); //ED-98-AA
+
+    List<Thumb> findByMediaTypeOrderByThumbsDownDesc(MediaType mediaType); //ED-99-AA
 }
