@@ -42,13 +42,13 @@ public class ThumbServiceImpl implements ThumbService {
     @Override
     public List<ThumbDTO> getThumbsUpFilteredListByMediaType(MediaType mediaType) {
         List<Thumb> filteredListByThumbsUp = thumbRepository.findByMediaTypeOrderByThumbsUpDesc(mediaType);
-        return filteredListByThumbsUp.stream().map(ThumbMapper::toDTOFull).collect(Collectors.toList());
+        return filteredListByThumbsUp.stream().map(ThumbMapper::toDTOThumbsUp).collect(Collectors.toList());
     }
 
     //ED-99-AA
     @Override
     public List<ThumbDTO> getThumbsDownFilteredListByMediaType(MediaType mediaType) {
         List<Thumb> filteredListByThumbsDown = thumbRepository.findByMediaTypeOrderByThumbsDownDesc(mediaType);
-        return List.of();
+        return filteredListByThumbsDown.stream().map(ThumbMapper::toDTOThumbsDown).collect(Collectors.toList());
     }
 }
