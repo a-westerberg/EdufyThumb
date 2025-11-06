@@ -10,6 +10,9 @@ import com.example.edufythumb.services.util.ValidateMediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ThumbServiceImpl implements ThumbService {
 
@@ -33,5 +36,12 @@ public class ThumbServiceImpl implements ThumbService {
         }
 
         return ThumbMapper.toDTOFull(findThumb);
+    }
+
+    //ED-98-AA
+    @Override
+    public List<ThumbDTO> getThumbsUpFilteredListByMediaType(MediaType mediaType) {
+        List<Thumb> filteredListByThumbsUp = thumbRepository.findByMediaTypeOrderByThumbsUpDesc(mediaType);
+        return filteredListByThumbsUp.stream().map(ThumbMapper::toDTOFull).collect(Collectors.toList());
     }
 }

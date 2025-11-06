@@ -1,13 +1,13 @@
 package com.example.edufythumb.controllers;
 
 import com.example.edufythumb.models.dto.ThumbDTO;
+import com.example.edufythumb.models.enums.MediaType;
 import com.example.edufythumb.services.ThumbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 //ED-217-SA
 @RestController
@@ -26,5 +26,11 @@ public class ClientController {
     @GetMapping("/thumbs-media")
     public ResponseEntity<ThumbDTO> getThumbOnMedia(@RequestParam String media, @RequestParam Long mediaId){
         return ResponseEntity.ok(thumbService.getThumbByMediaAndId(media, mediaId));
+    }
+
+    //ED-98-AA
+    @GetMapping("thumbsup-media/{mediaType}")
+    public ResponseEntity<List<ThumbDTO>> getThumbsOnMedia(@PathVariable MediaType mediaType){
+        return ResponseEntity.ok(thumbService.getThumbsUpFilteredListByMediaType(mediaType));
     }
 }
