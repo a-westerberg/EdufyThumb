@@ -43,11 +43,11 @@ public class Thumb {
     @Column(name = "user_id_thumbs_up")
     private List<Long> userIdVotedUp = new ArrayList<>();
 
-/*    @Column(name = "thumbs_up", nullable = false)
-    private Long thumbsUp = 0L;
+ /*   @Column(name = "thumbs_up", nullable = false)
+    private Long thumbsUp = 0L;*/
 
     @Column(name = "thumbs_down", nullable = false)
-    private Long thumbsDown = 0L;*/
+    private Long thumbsDown = 0L;
 
     public Thumb() {
     }
@@ -94,15 +94,15 @@ public class Thumb {
         return userIdVotedUp.size();
     }
 
-    public void setMediaId(Long mediaId) {
+/*    public void setMediaId(Long mediaId) {
         this.mediaId = mediaId;
     }
-/*    public Long getThumbsUp() {
+    public Long getThumbsUp() {
         return thumbsUp;
     }
     public void setThumbsUp(Long thumbsUp) {
         this.thumbsUp = thumbsUp;
-    }
+    }*/
     public Long getThumbsDown() {
         return thumbsDown;
     }
@@ -110,15 +110,15 @@ public class Thumb {
         this.thumbsDown = thumbsDown;
     }
 
-// Increases thumbs up count by one
+/*// Increases thumbs up count by one
     public void addThumbUp(){
         this.thumbsUp++;
-    }
+    }*/
 
 // Increases thumbs down count by one
     public void addThumbDown(){
         this.thumbsDown++;
-    }*/
+    }
 
     @Override
     public String toString() {
