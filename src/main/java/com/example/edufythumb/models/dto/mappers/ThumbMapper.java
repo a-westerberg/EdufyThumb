@@ -45,4 +45,11 @@ public class ThumbMapper {
         thumbDTO.setThumbsDown(thumb.getThumbsDown());
         return thumbDTO;
     }
+
+    //ED-104-AA
+    public static  ThumbDTO toDTOMediaId(Thumb thumb) {
+        ThumbDTO thumbDTO = new ThumbDTO();
+        thumbDTO.setMediaId(thumb.getMediaId());
+        return thumbDTO;
+    }
 }
