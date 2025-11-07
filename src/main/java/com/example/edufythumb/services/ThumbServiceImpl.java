@@ -56,6 +56,6 @@ public class ThumbServiceImpl implements ThumbService {
     @Override
     public List<ThumbDTO> getMediaByThumbsUpAndUserId(MediaType mediaType, Long userId) {
         List<Thumb> mediaByThumbsUpAndUser = thumbRepository.findAllByUserVotedUpAndMediaType(userId, mediaType);
-        return mediaByThumbsUpAndUser.stream().map(ThumbMapper::toDTOMediaId).collect(Collectors.toList());
+        return mediaByThumbsUpAndUser.stream().map(ThumbMapper::toDTOMediaIdAndMediaType).collect(Collectors.toList());
     }
 }
