@@ -51,4 +51,11 @@ public class ThumbServiceImpl implements ThumbService {
         List<Thumb> filteredListByThumbsDown = thumbRepository.findByMediaTypeOrderByThumbsDownDesc(mediaType);
         return filteredListByThumbsDown.stream().map(ThumbMapper::toDTOThumbsDown).collect(Collectors.toList());
     }
+
+    //ED-104-AA
+    @Override
+    public List<ThumbDTO> getMediaByThumbsUpAndUserId(MediaType mediaType, Long userId) {
+        List<Thumb> mediaByThumbsUpAndUser = thumbRepository.findAllByUserVotedUpAndMediaType(userId, mediaType);
+        return mediaByThumbsUpAndUser.stream().map(ThumbMapper::toDTOMediaIdAndMediaType).collect(Collectors.toList());
+    }
 }

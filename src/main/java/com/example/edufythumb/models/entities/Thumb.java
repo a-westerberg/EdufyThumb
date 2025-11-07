@@ -4,6 +4,9 @@ package com.example.edufythumb.models.entities;
 import com.example.edufythumb.models.enums.MediaType;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // ED-173-AWS
 @Entity
 @Table(
@@ -28,8 +31,20 @@ public class Thumb {
     @Column(name = "media_id", nullable = false)
     private Long mediaId;
 
-    @Column(name = "thumbs_up", nullable = false)
-    private Long thumbsUp = 0L;
+    //ED-104-AA
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(
+            name = "user_votes_thumb_up",
+            joinColumns = @JoinColumn(name = "thumb_id"),
+            uniqueConstraints = {
+                    @UniqueConstraint(name = "uq_thumb_user_vote", columnNames = {"thumb_id", "user_id_thumbs_up"})
+            }
+    )
+    @Column(name = "user_id_thumbs_up")
+    private List<Long> userIdVotedUp = new ArrayList<>();
+
+ /*   @Column(name = "thumbs_up", nullable = false)
+    private Long thumbsUp = 0L;*/
 
     @Column(name = "thumbs_down", nullable = false)
     private Long thumbsDown = 0L;
@@ -47,8 +62,8 @@ public class Thumb {
         this.mediaName = mediaName;
         this.mediaType = mediaType;
         this.mediaId = mediaId;
-        this.thumbsUp = thumbsUp;
-        this.thumbsDown = thumbsDown;
+/*        this.thumbsUp = thumbsUp;
+        this.thumbsDown = thumbsDown;*/
     }
 
 
@@ -73,7 +88,13 @@ public class Thumb {
     public Long getMediaId() {
         return mediaId;
     }
-    public void setMediaId(Long mediaId) {
+
+    //ED-104-AA
+    public long getThumbsUp (){
+        return userIdVotedUp.size();
+    }
+
+/*    public void setMediaId(Long mediaId) {
         this.mediaId = mediaId;
     }
     public Long getThumbsUp() {
@@ -81,7 +102,7 @@ public class Thumb {
     }
     public void setThumbsUp(Long thumbsUp) {
         this.thumbsUp = thumbsUp;
-    }
+    }*/
     public Long getThumbsDown() {
         return thumbsDown;
     }
@@ -89,10 +110,10 @@ public class Thumb {
         this.thumbsDown = thumbsDown;
     }
 
-// Increases thumbs up count by one
+/*// Increases thumbs up count by one
     public void addThumbUp(){
         this.thumbsUp++;
-    }
+    }*/
 
 // Increases thumbs down count by one
     public void addThumbDown(){
@@ -106,8 +127,8 @@ public class Thumb {
                 ", mediaName='" + mediaName + '\'' +
                 ", mediaType=" + mediaType +
                 ", mediaId=" + mediaId +
-                ", thumbsUp=" + thumbsUp +
-                ", thumbsDown=" + thumbsDown +
+                ", thumbsUp=" + getThumbsUp() +
+                /*", thumbsDown=" + thumbsDown +*/
                 '}';
     }
 }
