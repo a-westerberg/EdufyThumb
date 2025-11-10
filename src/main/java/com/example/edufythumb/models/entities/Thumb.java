@@ -37,17 +37,29 @@ public class Thumb {
             name = "user_votes_thumb_up",
             joinColumns = @JoinColumn(name = "thumb_id"),
             uniqueConstraints = {
-                    @UniqueConstraint(name = "uq_thumb_user_vote", columnNames = {"thumb_id", "user_id_thumbs_up"})
+                    @UniqueConstraint(name = "uq_thumb_user_vote_up", columnNames = {"thumb_id", "user_id_thumbs_up"})
             }
     )
     @Column(name = "user_id_thumbs_up")
     private List<Long> userIdVotedUp = new ArrayList<>();
 
+    //ED-105-AA
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(
+            name = "user_votes_thumb_down",
+            joinColumns = @JoinColumn(name = "thumb_id"),
+            uniqueConstraints = {
+                    @UniqueConstraint(name = "uq_thumb_user_vote_down", columnNames = {"thumb_id", "user_id_thumbs_down"})
+            }
+    )
+    @Column(name = "user_id_thumbs_down")
+    private List<Long> userIdVotedDown = new ArrayList<>();
+
  /*   @Column(name = "thumbs_up", nullable = false)
     private Long thumbsUp = 0L;*/
 
-    @Column(name = "thumbs_down", nullable = false)
-    private Long thumbsDown = 0L;
+/*    @Column(name = "thumbs_down", nullable = false)
+    private Long thumbsDown = 0L;*/
 
     public Thumb() {
     }
@@ -58,12 +70,21 @@ public class Thumb {
         this.mediaId = mediaId;
     }
 
-    public Thumb(String mediaName, MediaType mediaType, Long mediaId, Long thumbsUp, Long thumbsDown) {
+    public Thumb(String mediaName, MediaType mediaType, Long mediaId, List<Long> userIdVotedUp, List<Long> userIdVotedDown) {
         this.mediaName = mediaName;
         this.mediaType = mediaType;
         this.mediaId = mediaId;
-/*        this.thumbsUp = thumbsUp;
-        this.thumbsDown = thumbsDown;*/
+        this.userIdVotedUp = userIdVotedUp;
+        this.userIdVotedDown = userIdVotedDown;
+    }
+
+    public Thumb (Thumb thumb) {
+        this.id = thumb.id;
+        this.mediaName = thumb.mediaName;
+        this.mediaType = thumb.mediaType;
+        this.mediaId = thumb.mediaId;
+        this.userIdVotedUp = thumb.userIdVotedUp;
+        this.userIdVotedDown = thumb.userIdVotedDown;
     }
 
 
@@ -94,7 +115,28 @@ public class Thumb {
         return userIdVotedUp.size();
     }
 
-/*    public void setMediaId(Long mediaId) {
+    //ED-105-AA
+    public long getThumbsDown(){
+        return userIdVotedDown.size();
+    }
+
+    public List<Long> getUserIdVotedUp() {
+        return userIdVotedUp;
+    }
+
+    public void setUserIdVotedUp(List<Long> userIdVotedUp) {
+        this.userIdVotedUp = userIdVotedUp;
+    }
+
+    public List<Long> getUserIdVotedDown() {
+        return userIdVotedDown;
+    }
+
+    public void setUserIdVotedDown(List<Long> userIdVotedDown) {
+        this.userIdVotedDown = userIdVotedDown;
+    }
+
+    /*    public void setMediaId(Long mediaId) {
         this.mediaId = mediaId;
     }
     public Long getThumbsUp() {
@@ -103,22 +145,22 @@ public class Thumb {
     public void setThumbsUp(Long thumbsUp) {
         this.thumbsUp = thumbsUp;
     }*/
-    public Long getThumbsDown() {
+/*    public Long getThumbsDown() {
         return thumbsDown;
     }
     public void setThumbsDown(Long thumbsDown) {
         this.thumbsDown = thumbsDown;
-    }
+    }*/
 
 /*// Increases thumbs up count by one
     public void addThumbUp(){
         this.thumbsUp++;
-    }*/
+    }
 
 // Increases thumbs down count by one
     public void addThumbDown(){
         this.thumbsDown++;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -128,7 +170,7 @@ public class Thumb {
                 ", mediaType=" + mediaType +
                 ", mediaId=" + mediaId +
                 ", thumbsUp=" + getThumbsUp() +
-                /*", thumbsDown=" + thumbsDown +*/
+                ", thumbsDown=" + getThumbsDown() +
                 '}';
     }
 }

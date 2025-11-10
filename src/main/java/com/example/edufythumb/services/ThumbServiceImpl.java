@@ -58,4 +58,44 @@ public class ThumbServiceImpl implements ThumbService {
         List<Thumb> mediaByThumbsUpAndUser = thumbRepository.findAllByUserVotedUpAndMediaType(userId, mediaType);
         return mediaByThumbsUpAndUser.stream().map(ThumbMapper::toDTOMediaIdAndMediaType).collect(Collectors.toList());
     }
+
+    //ED-105-AA
+    @Override
+    public List<ThumbDTO> getMediaByThumbsDownAndUserId(MediaType mediaType, Long userId) {
+        List<Thumb> mediaByThumbsDownAndUser = thumbRepository.findAllByUserVotedDownAndMediaType(userId, mediaType);
+        return  mediaByThumbsDownAndUser.stream().map(ThumbMapper::toDTOMediaIdAndMediaType).collect(Collectors.toList());
+    }
+
+    //ED-105-AA
+    //Add userId to thumbsUp and if userId is in thumbs down - remove that vote.
+    private void addUserIdVoteThumbsUp (Long thumbId, Long userId) {
+        Thumb thumb = thumbRepository.findById(thumbId).orElseThrow(
+                () -> new ResourceNotFoundException("Thumb", "id", thumbId)
+        );
+
+        if (!thumb.getUserIdVotedUp().contains(userId)) {
+            thumb.getUserIdVotedUp().add(userId);
+        }
+
+        thumb.getUserIdVotedDown().remove(userId);
+
+        thumbRepository.save(thumb);
+    }
+
+    //ED-105-AA
+    //Add userId to thumbDown and if userId is in thumbs up - remove that vote.
+    private void addUserIdVoteThumbsDown (Long thumbId, Long userId) {
+        Thumb thumb = thumbRepository.findById(thumbId).orElseThrow(
+                () -> new ResourceNotFoundException("Thumb", "id", thumbId)
+        );
+
+        if (!thumb.getUserIdVotedDown().contains(userId)) {
+            thumb.getUserIdVotedDown().add(userId);
+        }
+
+        thumb.getUserIdVotedUp().remove(userId);
+
+        thumbRepository.save(thumb);
+    }
+
 }

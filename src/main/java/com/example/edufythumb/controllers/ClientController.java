@@ -45,4 +45,10 @@ public class ClientController {
     public ResponseEntity<List<ThumbDTO>> getMediaByThumbsupAndUserId(@PathVariable MediaType mediaType, @PathVariable Long userId){
         return ResponseEntity.ok(thumbService.getMediaByThumbsUpAndUserId(mediaType, userId));
     }
+
+    //ED-105-AA
+    @GetMapping("/thumbsdown-media-user/{mediaType}/{userId}")
+    public ResponseEntity<List<ThumbDTO>> getMediaByThumbsdownAndUserId(@PathVariable MediaType mediaType, @PathVariable Long userId){
+        return ResponseEntity.ok(thumbService.getMediaByThumbsDownAndUserId(mediaType, userId));
+    }
 }
