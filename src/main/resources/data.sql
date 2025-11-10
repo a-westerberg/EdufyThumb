@@ -12,17 +12,17 @@ VALUES
 INSERT INTO user_votes_thumb_up (thumb_id, user_id_thumbs_up)
 VALUES
 -- Blue
-(1, 101),
-(1, 102),
-(1, 103),
+(1, 1),
+(1, 2),
+(1, 3),
 -- Thunderstruck
-(2, 104),
-(2, 105),
+(2, 4),
+(2, 5),
 -- Funny Cats Compilation
-(3, 106),
-(3, 107),
-(3, 108),
-(3, 109),
+(3, 6),
+(3, 7),
+(3, 8),
+(3, 9),
 -- Tech Weekly: AI Edition
-(4, 110),
-(4, 111);
+(4, 10),
+(4, 1);
