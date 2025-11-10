@@ -120,7 +120,23 @@ public class Thumb {
         return userIdVotedDown.size();
     }
 
-/*    public void setMediaId(Long mediaId) {
+    public List<Long> getUserIdVotedUp() {
+        return userIdVotedUp;
+    }
+
+    public void setUserIdVotedUp(List<Long> userIdVotedUp) {
+        this.userIdVotedUp = userIdVotedUp;
+    }
+
+    public List<Long> getUserIdVotedDown() {
+        return userIdVotedDown;
+    }
+
+    public void setUserIdVotedDown(List<Long> userIdVotedDown) {
+        this.userIdVotedDown = userIdVotedDown;
+    }
+
+    /*    public void setMediaId(Long mediaId) {
         this.mediaId = mediaId;
     }
     public Long getThumbsUp() {

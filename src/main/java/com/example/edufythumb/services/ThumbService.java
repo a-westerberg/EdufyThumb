@@ -14,5 +14,7 @@ public interface ThumbService {
 
     List<ThumbDTO> getThumbsDownFilteredListByMediaType(MediaType mediaType); //ED-99-AA
 
-    List<ThumbDTO> getMediaByThumbsUpAndUserId(MediaType mediaType, Long userId);
+    List<ThumbDTO> getMediaByThumbsUpAndUserId(MediaType mediaType, Long userId); //ED-104-AA
+
+    List<ThumbDTO> getMediaByThumbsDownAndUserId(MediaType mediaType, Long userId); //ED-105-AA
 }
