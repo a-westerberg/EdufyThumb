@@ -1,11 +1,11 @@
 --ED-104-AA
 --updated and removed mediaTypes (album/season/playlist)
-INSERT INTO thumb (media_type, media_id, media_name, thumbs_down)
+INSERT INTO thumb (media_type, media_id, media_name)
 VALUES
-    ('SONG', 1, 'Blue', 10),
-    ('SONG', 2, 'Thunderstruck', 5),
-    ('VIDEO_CLIP', 1, 'Funny Cats Compilation', 25),
-    ('PODCAST_EPISODE', 1, 'Tech Weekly: AI Edition', 9);
+    ('SONG', 1, 'Blue'),
+    ('SONG', 2, 'Thunderstruck'),
+    ('VIDEO_CLIP', 1, 'Funny Cats Compilation'),
+    ('PODCAST_EPISODE', 1, 'Tech Weekly: AI Edition');
 
 --ED-104-AA
 -- Add userId that voted thumbsUp

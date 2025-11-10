@@ -37,7 +37,7 @@ public class Thumb {
             name = "user_votes_thumb_up",
             joinColumns = @JoinColumn(name = "thumb_id"),
             uniqueConstraints = {
-                    @UniqueConstraint(name = "uq_thumb_user_vote", columnNames = {"thumb_id", "user_id_thumbs_up"})
+                    @UniqueConstraint(name = "uq_thumb_user_vote_up", columnNames = {"thumb_id", "user_id_thumbs_up"})
             }
     )
     @Column(name = "user_id_thumbs_up")
@@ -49,7 +49,7 @@ public class Thumb {
             name = "user_votes_thumb_down",
             joinColumns = @JoinColumn(name = "thumb_id"),
             uniqueConstraints = {
-                    @UniqueConstraint(name = "uq_thumb_user_vote", columnNames = {"thumb_id", "user_id_thumbs_down"})
+                    @UniqueConstraint(name = "uq_thumb_user_vote_down", columnNames = {"thumb_id", "user_id_thumbs_down"})
             }
     )
     @Column(name = "user_id_thumbs_down")
