@@ -26,7 +26,7 @@ public class SecurityConfig {
                                 .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
-                        .jwt(Customizer.withDefaults())
+                        .jwt(Customizer.withDefaults())     //om admin endpoints tillkommer framöver behövs detta justeras
                 );
 
         return http.build();
