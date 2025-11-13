@@ -31,4 +31,6 @@ public interface ThumbRepository extends JpaRepository<Thumb, Long> {
     @Query("SELECT t FROM Thumb t WHERE :userId MEMBER OF t.userIdVotedDown AND t.mediaType = :mediaType")
     List<Thumb> findAllByUserVotedDownAndMediaType(@Param("userId") Long userId, @Param("mediaType") MediaType mediaType);
 
+    //ED-245-AWS
+    boolean existsByMediaIdAndMediaType(Long mediaId, MediaType mediaType);
 }
