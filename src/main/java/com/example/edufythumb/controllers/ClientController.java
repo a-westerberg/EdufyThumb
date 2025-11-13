@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 //ED-217-SA
 @RestController
-@RequestMapping("/api/v1/thumb")
+@RequestMapping("/thumb")
 public class ClientController {
 
     private final ThumbService thumbService;
