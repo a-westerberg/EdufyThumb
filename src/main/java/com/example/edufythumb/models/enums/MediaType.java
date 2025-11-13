@@ -3,9 +3,9 @@ package com.example.edufythumb.models.enums;
 // ED-173-AWS
 public enum MediaType {
     SONG,
-    ALBUM,
+    //ALBUM,
     VIDEO_CLIP,
-    VIDEO_PLAYLIST,
+    //VIDEO_PLAYLIST,
     PODCAST_EPISODE,
-    PODCAST_SEASON
+    //PODCAST_SEASON
 }

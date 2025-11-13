@@ -10,6 +10,9 @@ import com.example.edufythumb.services.util.ValidateMediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ThumbServiceImpl implements ThumbService {
 
@@ -34,4 +37,65 @@ public class ThumbServiceImpl implements ThumbService {
 
         return ThumbMapper.toDTOFull(findThumb);
     }
+
+    //ED-98-AA
+    @Override
+    public List<ThumbDTO> getThumbsUpFilteredListByMediaType(MediaType mediaType) {
+        List<Thumb> filteredListByThumbsUp = thumbRepository.findByMediaTypeOrderByThumbsUpDesc(mediaType);
+        return filteredListByThumbsUp.stream().map(ThumbMapper::toDTOThumbsUp).collect(Collectors.toList());
+    }
+
+    //ED-99-AA
+    @Override
+    public List<ThumbDTO> getThumbsDownFilteredListByMediaType(MediaType mediaType) {
+        List<Thumb> filteredListByThumbsDown = thumbRepository.findByMediaTypeOrderByThumbsDownDesc(mediaType);
+        return filteredListByThumbsDown.stream().map(ThumbMapper::toDTOThumbsDown).collect(Collectors.toList());
+    }
+
+    //ED-104-AA
+    @Override
+    public List<ThumbDTO> getMediaByThumbsUpAndUserId(MediaType mediaType, Long userId) {
+        List<Thumb> mediaByThumbsUpAndUser = thumbRepository.findAllByUserVotedUpAndMediaType(userId, mediaType);
+        return mediaByThumbsUpAndUser.stream().map(ThumbMapper::toDTOMediaIdAndMediaType).collect(Collectors.toList());
+    }
+
+    //ED-105-AA
+    @Override
+    public List<ThumbDTO> getMediaByThumbsDownAndUserId(MediaType mediaType, Long userId) {
+        List<Thumb> mediaByThumbsDownAndUser = thumbRepository.findAllByUserVotedDownAndMediaType(userId, mediaType);
+        return  mediaByThumbsDownAndUser.stream().map(ThumbMapper::toDTOMediaIdAndMediaType).collect(Collectors.toList());
+    }
+
+    //ED-105-AA
+    //Add userId to thumbsUp and if userId is in thumbs down - remove that vote.
+    private void addUserIdVoteThumbsUp (Long thumbId, Long userId) {
+        Thumb thumb = thumbRepository.findById(thumbId).orElseThrow(
+                () -> new ResourceNotFoundException("Thumb", "id", thumbId)
+        );
+
+        if (!thumb.getUserIdVotedUp().contains(userId)) {
+            thumb.getUserIdVotedUp().add(userId);
+        }
+
+        thumb.getUserIdVotedDown().remove(userId);
+
+        thumbRepository.save(thumb);
+    }
+
+    //ED-105-AA
+    //Add userId to thumbDown and if userId is in thumbs up - remove that vote.
+    private void addUserIdVoteThumbsDown (Long thumbId, Long userId) {
+        Thumb thumb = thumbRepository.findById(thumbId).orElseThrow(
+                () -> new ResourceNotFoundException("Thumb", "id", thumbId)
+        );
+
+        if (!thumb.getUserIdVotedDown().contains(userId)) {
+            thumb.getUserIdVotedDown().add(userId);
+        }
+
+        thumb.getUserIdVotedUp().remove(userId);
+
+        thumbRepository.save(thumb);
+    }
+
 }
