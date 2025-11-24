@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +18,9 @@ import java.util.List;
 
 //ED-217-SA
 @RestController
-@RequestMapping("/api/v1/thumb")
+@RequestMapping("/thumb")   //ED-350-AWS Removed /api/v1
 @Validated  //ED-245-AWS
+@PreAuthorize("hasRole('thumb_user')")
 public class ClientController {
 
     private final ThumbService thumbService;
