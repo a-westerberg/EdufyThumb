@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/thumb")   //ED-350-AWS Removed /api/v1
 @Validated  //ED-245-AWS
-@PreAuthorize("hasRole('thumb_user')")
+@PreAuthorize("hasRole('microservice_access')")     //ED-352-AWS change from user
 public class ClientController {
 
     private final ThumbService thumbService;
