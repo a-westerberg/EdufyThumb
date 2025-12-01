@@ -50,10 +50,6 @@ Docker Compose, Eureka, and the API Gateway. Related projects are linked below.
 - **Security :**
     - Spring Security
     - OAuth2 Resource Server
-- **Testing :**
-    - Spring Boot Testing
-    - Mockito
-    - JUnit 5
 
 ---
 
