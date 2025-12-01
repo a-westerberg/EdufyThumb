@@ -55,12 +55,6 @@ public class Thumb {
     @Column(name = "user_id_thumbs_down")
     private List<Long> userIdVotedDown = new ArrayList<>();
 
- /*   @Column(name = "thumbs_up", nullable = false)
-    private Long thumbsUp = 0L;*/
-
-/*    @Column(name = "thumbs_down", nullable = false)
-    private Long thumbsDown = 0L;*/
-
     public Thumb() {
     }
 
@@ -86,7 +80,6 @@ public class Thumb {
         this.userIdVotedUp = thumb.userIdVotedUp;
         this.userIdVotedDown = thumb.userIdVotedDown;
     }
-
 
     public Long getId() {
         return id;
@@ -135,32 +128,6 @@ public class Thumb {
     public void setUserIdVotedDown(List<Long> userIdVotedDown) {
         this.userIdVotedDown = userIdVotedDown;
     }
-
-    /*    public void setMediaId(Long mediaId) {
-        this.mediaId = mediaId;
-    }
-    public Long getThumbsUp() {
-        return thumbsUp;
-    }
-    public void setThumbsUp(Long thumbsUp) {
-        this.thumbsUp = thumbsUp;
-    }*/
-/*    public Long getThumbsDown() {
-        return thumbsDown;
-    }
-    public void setThumbsDown(Long thumbsDown) {
-        this.thumbsDown = thumbsDown;
-    }*/
-
-/*// Increases thumbs up count by one
-    public void addThumbUp(){
-        this.thumbsUp++;
-    }
-
-// Increases thumbs down count by one
-    public void addThumbDown(){
-        this.thumbsDown++;
-    }*/
 
     @Override
     public String toString() {

@@ -70,5 +70,4 @@ public class ClientController {
         CreateThumbRecordResponseDTO response = thumbRecordService.createRecordOfMedia(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
 }
